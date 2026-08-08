@@ -37,8 +37,14 @@ context on demand. See `README.md` for the full design rationale and
   parses one option (`status`/`enable`/`disable`/`set-destination`/`list`/
   `load`) and either shells out to a `core/`/`adapters/claude-code/` script
   or, for `load`, walks the emitted replay plan with real tool calls.
-- `tests/` — unit tests per `core/`/adapter module, integration tests that
-  run the hook scripts as real subprocesses with sample stdin, and
+- `gui/` — local web GUI: `app.py` is a stdlib WSGI JSON API (no
+  Flask/Django) wrapping `core/` + `adapters/claude-code/install.py`,
+  `server.py` is the `wsgiref` entrypoint, `static/` is a vanilla
+  HTML/CSS/JS frontend with no build step. It's a thin HTTP layer, not a
+  new source of truth — don't put logic here that belongs in `core/`.
+- `tests/` — unit tests per `core/`/adapter/gui module, integration tests
+  that run the hook scripts as real subprocesses with sample stdin, GUI
+  tests that call the WSGI app directly (no real socket), and
   `fixtures/*.jsonl` sample bundles for load/replay tests.
 
 ## Invariants — treat carefully
@@ -66,6 +72,14 @@ context on demand. See `README.md` for the full design rationale and
 - **The one interactive step is `SessionStart` asking for a destination
   the first time** (hooks can't prompt the user directly — see README).
   Every other recording path must stay fully static/non-agentic.
+- **The GUI binds to `127.0.0.1` by default and has no authentication.**
+  It's a localhost dev dashboard, same trust model as any other. Don't add
+  a `--host 0.0.0.0` default or any code path that assumes the GUI is
+  network-exposed.
+- **`gui/app.py` has zero new dependencies** — stdlib `wsgiref`/`json`
+  only, and the frontend has zero npm dependencies/build step. Keep it
+  that way; if a feature seems to need a framework, that's a signal to
+  scope it down, not to add a dependency.
 
 ## When you add a new agent adapter
 

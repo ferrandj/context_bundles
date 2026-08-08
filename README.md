@@ -26,6 +26,7 @@ adapters/claude-code/  fully implemented + tested integration for Claude Code (h
 adapters/cursor/       adapter contract documented, not implemented
 adapters/codex/        adapter contract documented, not implemented
 skills/context-bundle/ the one skill: status/enable/disable/set-destination/list/load
+gui/                   local web GUI (stdlib WSGI backend + vanilla JS frontend)
 tests/                 unit + integration tests (python3 -m unittest discover -s tests)
 ```
 
@@ -91,6 +92,26 @@ project's `.claude/skills/` to make `/context-bundle` available, then:
 leaving every other hook untouched. This repo does not modify your real
 `~/.claude/settings.json` on its own — recording stays off until you
 explicitly run `enable`.
+
+## GUI
+
+A local dashboard for the same operations the skill exposes: enable/
+disable recording, edit the destination, browse recorded bundles, and
+inspect a bundle's replay plan (prompts + which reads/searches/fetches
+would be redone, with stale paths flagged).
+
+```
+python3 gui/server.py            # opens http://127.0.0.1:8765/ in your browser
+python3 gui/server.py --no-open --port 9000
+```
+
+Built with the Python 3 standard library only (`wsgiref` + a vanilla
+HTML/CSS/JS frontend, no npm/build step) — same zero-dependency,
+easy-to-test philosophy as the rest of this repo, and it's just an HTTP
+layer over `core/`/`adapters/claude-code/install.py`, no new logic. Binds
+to `127.0.0.1` by default: it serves local file paths and session data
+with no authentication, the same trust model as any other localhost dev
+dashboard — don't expose `--host 0.0.0.0` on a shared or untrusted network.
 
 ## Other agents (Cursor, Codex, ...)
 

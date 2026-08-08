@@ -31,6 +31,7 @@ machine running it.
 | Hook scripts (subprocess, real stdin/stdout contract) | `test_hooks_integration.py` | SessionStart creates bundle + meta line + pointer; UserPromptSubmit/PostToolUse append correctly; SessionEnd clears pointer but keeps the file | Disabled config → hooks are no-ops; enabled with no destination → `SessionStart` emits an ask-the-user message and creates nothing; no active bundle for a session_id → silent no-op; missing `tool_name` → no-op |
 | Hook installation | `test_install_hooks.py` | `enable` adds all 4 events to a settings.json (creating the file if absent) | Preserves unrelated settings keys and unrelated existing hook entries; `enable` run twice doesn't duplicate; `disable` removes only our entries and drops now-empty event keys; `disable` on a file that was never enabled is a no-op; `status` reports which events are currently installed |
 | Performance | `test_performance.py` | 5,000-line bundle parses in well under a second on any reasonable machine | — |
+| GUI (WSGI JSON API) | `test_gui_app.py` | `/api/status`, `/api/hooks-status`, `/api/config`, `/api/enable`, `/api/disable`, `/api/bundles`, `/api/bundles/<id>` all return the expected shape; enable/disable round-trip against a fake settings.json | Missing/blank `destination` body → 400; invalid bundle id (spaces, etc.) → 400; unknown bundle id → 404; unknown `/api/*` route → 404; static path traversal (`/../app.py`) blocked; POST to a static route → 405; enable called twice stays idempotent |
 
 ## Manual verification (not automated — see plan's Verification section)
 

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Bundles</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast" hidden></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&#9673;</span>
+      <div>
+        <h1>Context Bundles</h1>
+        <p class="subtitle">Recorded AI session context, browsable and replayable</p>
+      </div>
+    </div>
+    <button id="refresh-btn" class="btn btn-ghost" title="Refresh everything">Refresh</button>
+  </header>
+
+  <main class="layout">
+    <section class="panel status-panel">
+      <div class="panel-header">
+        <h2>Recording</h2>
+        <span id="status-badge" class="badge badge-unknown">loading…</span>
+      </div>
+
+      <div class="field-row">
+        <label for="destination-input">Destination folder</label>
+        <div class="input-with-button">
+          <input id="destination-input" type="text" placeholder="/path/to/store/bundles" />
+          <button id="save-destination-btn" class="btn btn-secondary">Save</button>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <span class="field-label">Bundles recorded</span>
+        <span id="bundle-count">–</span>
+      </div>
+
+      <div class="field-row">
+        <span class="field-label">Claude Code hooks installed</span>
+        <span id="hooks-status">–</span>
+      </div>
+
+      <div class="actions">
+        <button id="enable-btn" class="btn btn-primary">Enable recording</button>
+        <button id="disable-btn" class="btn btn-danger">Disable recording</button>
+      </div>
+      <p class="hint">Enabling only affects <em>new</em> Claude Code sessions started after this. Nothing here touches the current session.</p>
+    </section>
+
+    <section class="panel bundles-panel">
+      <div class="panel-header">
+        <h2>Bundles</h2>
+        <button id="load-latest-btn" class="btn btn-ghost">Open latest</button>
+      </div>
+      <div id="bundles-table-wrap">
+        <table class="bundles-table">
+          <thead>
+            <tr>
+              <th>Started</th>
+              <th>User</th>
+              <th>Root path</th>
+              <th>Lines</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody id="bundles-tbody">
+            <tr><td colspan="5" class="empty-row">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel detail-panel">
+      <div class="panel-header">
+        <h2 id="detail-title">Bundle detail</h2>
+      </div>
+      <div id="detail-empty" class="empty-state">Select a bundle to see its replay plan.</div>
+      <div id="detail-content" hidden>
+        <div class="stats-row" id="detail-stats"></div>
+
+        <h3>Prompts</h3>
+        <ol id="detail-prompts" class="prompt-list"></ol>
+
+        <h3>Context operations (replayable on load)</h3>
+        <ul id="detail-ops" class="ops-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

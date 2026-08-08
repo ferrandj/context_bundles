@@ -1,0 +1,4 @@
+{"username": "bob", "root_path": "/home/bob/proj", "session_id": "sess-malformed", "started_at": "2026-08-07T11:00:00+00:00", "schema_version": 1}
+{"ts": "2026-08-07T11:00:01+00:00", "operation": "prompt", "details": {"text": "First prompt"}}
+{this is not valid json
+{"ts": "2026-08-07T11:00:02+00:00", "operation": "read", "details": {"path": "README.md"}}

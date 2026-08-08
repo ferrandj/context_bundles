@@ -1,0 +1,11 @@
+{"username": "alice", "root_path": "/home/alice/proj", "session_id": "sess-nominal", "started_at": "2026-08-07T10:00:00+00:00", "schema_version": 1}
+{"ts": "2026-08-07T10:00:01+00:00", "operation": "prompt", "details": {"text": "Explain the auth module"}}
+{"ts": "2026-08-07T10:00:02+00:00", "operation": "read", "details": {"path": "src/auth.py"}}
+{"ts": "2026-08-07T10:00:03+00:00", "operation": "grep", "details": {"pattern": "def login", "path": "src"}}
+{"ts": "2026-08-07T10:00:04+00:00", "operation": "web_fetch", "details": {"url": "https://example.com/oauth-spec"}}
+{"ts": "2026-08-07T10:00:05+00:00", "operation": "web_search", "details": {"query": "oauth2 pkce flow"}}
+{"ts": "2026-08-07T10:00:06+00:00", "operation": "edit", "details": {"path": "src/auth.py"}}
+{"ts": "2026-08-07T10:00:07+00:00", "operation": "write", "details": {"path": "src/new_file.py"}}
+{"ts": "2026-08-07T10:00:08+00:00", "operation": "bash", "details": {"command": "pytest -k auth"}}
+{"ts": "2026-08-07T10:00:09+00:00", "operation": "ask_user", "details": {"questions": ["Use JWT or sessions?"]}}
+{"ts": "2026-08-07T10:00:10+00:00", "operation": "other", "details": {"tool": "SomeUnknownTool"}}

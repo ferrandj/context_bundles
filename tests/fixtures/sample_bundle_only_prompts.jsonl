@@ -1,0 +1,3 @@
+{"username": "carol", "root_path": "/home/carol/proj", "session_id": "sess-prompts-only", "started_at": "2026-08-07T12:00:00+00:00", "schema_version": 1}
+{"ts": "2026-08-07T12:00:01+00:00", "operation": "prompt", "details": {"text": "Just a question, no tool use"}}
+{"ts": "2026-08-07T12:00:02+00:00", "operation": "prompt", "details": {"text": "Another question"}}

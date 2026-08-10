@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" role="img" aria-label="context_bundles architecture diagram">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b93a7"/>
+    </marker>
+    <marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b8cff"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="420" fill="#0f1115"/>
+
+  <!-- Claude Code (or other agent) -->
+  <rect x="240" y="16" width="320" height="48" rx="8" fill="#161a22" stroke="#262c38"/>
+  <text x="400" y="45" text-anchor="middle" font-family="ui-monospace, monospace" font-size="15" fill="#e6e9ef">Claude Code (or another agent)</text>
+
+  <line x1="400" y1="64" x2="400" y2="94" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="410" y="82" font-family="-apple-system, sans-serif" font-size="11" fill="#8b93a7">hook events</text>
+
+  <!-- adapters/claude-code -->
+  <rect x="240" y="96" width="320" height="48" rx="8" fill="#161a22" stroke="#262c38"/>
+  <text x="400" y="125" text-anchor="middle" font-family="ui-monospace, monospace" font-size="15" fill="#e6e9ef">adapters/claude-code/ (hooks)</text>
+
+  <line x1="400" y1="144" x2="400" y2="174" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="410" y="162" font-family="-apple-system, sans-serif" font-size="11" fill="#8b93a7">translates to</text>
+
+  <!-- core/ -->
+  <rect x="230" y="176" width="340" height="64" rx="10" fill="#161a22" stroke="#5b8cff" stroke-width="2"/>
+  <text x="400" y="203" text-anchor="middle" font-family="ui-monospace, monospace" font-size="17" font-weight="700" fill="#e6e9ef">core/</text>
+  <text x="400" y="224" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#8b93a7">format · writer · config · replay-plan builder</text>
+
+  <line x1="400" y1="240" x2="400" y2="270" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="410" y="258" font-family="-apple-system, sans-serif" font-size="11" fill="#8b93a7">writes / reads</text>
+
+  <!-- bundle files -->
+  <rect x="260" y="272" width="280" height="50" rx="8" fill="#0d0f14" stroke="#262c38" stroke-dasharray="4 3"/>
+  <text x="400" y="302" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#e6e9ef">*.jsonl bundle files (your destination folder)</text>
+
+  <!-- gui/ -->
+  <rect x="24" y="184" width="176" height="48" rx="8" fill="#161a22" stroke="#262c38"/>
+  <text x="112" y="213" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#e6e9ef">gui/</text>
+  <line x1="200" y1="208" x2="228" y2="208" stroke="#5b8cff" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow-accent)"/>
+
+  <!-- skill -->
+  <rect x="592" y="184" width="188" height="48" rx="8" fill="#161a22" stroke="#262c38"/>
+  <text x="686" y="209" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#e6e9ef">skills/</text>
+  <text x="686" y="223" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#e6e9ef">context-bundle</text>
+  <line x1="592" y1="208" x2="572" y2="208" stroke="#5b8cff" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow-accent)"/>
+
+  <text x="400" y="352" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" fill="#8b93a7">both call into core/ directly — no logic duplicated outside it</text>
+
+  <rect x="130" y="374" width="540" height="34" rx="6" fill="none" stroke="#262c38" stroke-dasharray="3 3"/>
+  <text x="400" y="396" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#8b93a7">adapters/cursor/, adapters/codex/ — contract documented, not implemented yet</text>
+</svg>

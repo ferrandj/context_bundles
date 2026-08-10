@@ -1,5 +1,7 @@
 # context_bundles
 
+![context_bundles](assets/banner.svg)
+
 Record what an AI coding session actually did — prompts, files it read,
 URLs it fetched, searches it ran — as a small JSONL file, and later reload
 a past session's context (in the same tool, or in principle any other) by
@@ -27,8 +29,11 @@ adapters/cursor/       adapter contract documented, not implemented
 adapters/codex/        adapter contract documented, not implemented
 skills/context-bundle/ the one skill: status/enable/disable/set-destination/list/load
 gui/                   local web GUI (stdlib WSGI backend + vanilla JS frontend)
+assets/                icon/banner/diagram SVGs used in this README and the GUI favicon
 tests/                 unit + integration tests (python3 -m unittest discover -s tests)
 ```
+
+![architecture diagram](assets/architecture-diagram.svg)
 
 ## Bundle format
 

@@ -32,7 +32,7 @@ body {
 }
 
 .brand { display: flex; align-items: center; gap: 14px; }
-.brand-mark { font-size: 28px; color: var(--accent); }
+.brand-mark { display: block; border-radius: 6px; }
 .brand h1 { margin: 0; font-size: 19px; font-weight: 650; letter-spacing: -0.01em; }
 .subtitle { margin: 2px 0 0; color: var(--text-dim); font-size: 13px; }
 
